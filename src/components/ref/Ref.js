@@ -12,11 +12,18 @@ export default class Ref extends Component{
     }
     handleClick = () => {
         console.log(this);
-        this.txt.current.focus();  //真实的dom在this.txt.current
+        // this.txt.current.focus();  //真实的dom在this.txt.current
+        this.txt.focus();
     } ;
+    getRef = el => {
+        this.txt = el;
+    };
     render() {
         return <div>
-            <input type={'text'} ref={this.txt} placeholder={'请输入'}/>
+            <input type={'text'} ref={
+                // this.txt
+                this.getRef
+            } placeholder={'请输入'}/>
             <button onClick={this.handleClick}>点击</button>
         </div>
     }
