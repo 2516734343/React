@@ -350,3 +350,4 @@ React中的上下文特点：
 **注意细节**
 
 如果，上下文提供者（Context.Provider）中的value属性发生变化(Object.is比较)，会导致该上下文提供的所有后代元素全部重新渲染，无论该子元素是否有优化（无论shouldComponentUpdate函数返回什么结果）
+
