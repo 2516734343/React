@@ -13,6 +13,7 @@ function defer(fn) {
 }
 export function enqueueSetState(stateChange, component) {
 
+  //  // 如果queue的长度是0，也就是在上次flush执行之后第一次往队列里添加  让flush在所有同步任务后执行
   if (setStateQueue.length === 0) {
     defer(flush);
   }
