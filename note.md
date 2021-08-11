@@ -346,6 +346,110 @@ React 中的上下文特点：
 
 如果，上下文提供者（Context.Provider）中的 value 属性发生变化(Object.is 比较)，会导致该上下文提供的所有后代元素全部重新渲染，无论该子元素是否有优化（无论 shouldComponentUpdate 函数返回什么结果）
 
+# render props
+
+有时候，某些组件的各种功能及其处理逻辑几乎完全相同，只是显示的界面不一样，建议下面的方式认选其一来解决重复代码的问题（横切关注点）
+
+1. render props
+   1. 某个组件，需要某个属性
+   2. 该属性是一个函数，函数的返回值用于渲染
+   3. 函数的参数会传递为需要的数据
+   4. 注意纯组件的属性（尽量避免每次传递的 render props 的地址不一致）
+   5. 通常该属性的名字叫做 render
+2. HOC
+
+# React Router
+
+1. 根据不同的页面地址，展示不同的组件。（核心）
+2. 完成无刷新的地址切换。
+
+## 两种模式
+
+路由：根据不同的页面地址，展示不同的组件
+
+url 地址组成
+
+例：https://www.react.com:443/news/1-2-1.html?a=1&b=2#abcdefg
+
+1. 协议名(schema)：https
+2. 主机名(host)：www.react.com
+   1. ip 地址
+   2. 预设值：localhost
+   3. 域名
+   4. 局域网中电脑名称
+3. 端口号(port)：443
+   1. 如果协议是 http，端口号是 80，则可以省略端口号
+   2. 如果协议是 https，端口号是 443，则可以省略端口号
+4. 路径(path)：/news/1-2-1.html
+5. 地址参数(search、query)：?a=1&b=2
+   1. 附带的数据
+   2. 格式：属性名=属性值&属性名=属性值....
+6. 哈希(hash、锚点)
+   1. 附带的数据
+
+### Hash Router 哈希路由
+
+根据 url 地址中的哈希值来确定显示的组件
+
+> 原因：hash 的变化，不会导致页面刷新
+> 这种模式的兼容性最好
+
+### Borswer History Router 浏览器历史记录路由
+
+HTML5 出现后，新增了 History Api，从此以后，浏览器拥有了改变路径而不刷新页面的方式
+
+History 表示浏览器的历史记录，它使用栈的方式存储。
+
+1. history.length：获取栈中数据量
+2. history.pushState：向当前历史记录栈中加入一条新的记录
+   1. 参数 1：附加的数据，自定义的数据，可以是任何类型
+   2. 参数 2：页面标题，目前大部分浏览器不支持
+   3. 参数 3：新的地址
+3. history.replaceState：将当前指针指向的历史记录，替换为某个记录
+   1. 参数 1：附加的数据，自定义的数据，可以是任何类型
+   2. 参数 2：页面标题，目前大部分浏览器不支持
+   3. 参数 3：新的地址
+
+根据页面的路径决定渲染哪个组件
+
+## 路由组件
+
+React-Router 为我们提供了两个重要组件
+
+### Router 组件
+
+它本身不做任何展示，仅提供路由模式配置，另外，该组件会产生一个上下文，上下文中会提供一些实用的对象和方法，供其他相关组件使用
+
+1. HashRouter：该组件，使用 hash 模式匹配
+2. BrowserRouter：该组件，使用 BrowserHistory 模式匹配
+
+通常情况下，Router 组件只有一个，将该组件包裹整个页面
+
+### Route 组件
+
+根据不同的地址，展示不同的组件
+
+重要属性：
+
+1. path：匹配的路径
+   1. 默认情况下，不区分大小写，可以设置 sensitive 属性为 true，来区分大小写
+   2. 默认情况下，只匹配初始目录，如果要精确匹配，配置 exact 属性为 true
+   3. 如果不写 path，则会匹配任意路径
+2. component：匹配成功后要显示的组件
+3. children：
+   1. 传递 React 元素，无论是否匹配，一定会显示 children，并且会忽略 component 属性
+   2. 传递一个函数，该函数有多个参数，这些参数来自于上下文，该函数返回 react 元素，则一定会显示返回的元素，并且忽略 component 属性
+
+Route 组件可以写到任意的地方，只要保证它是 Router 组件的后代元素
+
+### Switch 组件
+
+写到 Switch 组件中的 Route 组件，当匹配到第一个 Route 后，会立即停止匹配
+
+由于 Switch 组件会循环所有子元素，然后让每个子元素去完成匹配，若匹配到，则渲染对应的组件，然后停止循环。因此，不能在 Switch 的子元素中使用除 Route 外的其他组件。
+
 # build your own react
 
-https://pomb.us/build-your-own-react/
+[build your own react](https://pomb.us/build-your-own-react/)
+
+# 学习总结疑问
