@@ -510,6 +510,51 @@ react-router 使用了第三方库：Path-to-RegExp，该库的作用是，将�
 1. 将路由信息从父组件一层一层传递到子组件
 2. 使用 react-router 提供的高阶组件 withRouter，包装要使用的组件，该高阶组件会返回一个新组件，新组件将向提供的组件注入路由信息。
 
+---
+
+## 其他组件
+
+### Link
+
+生成一个无刷新跳转的 a 元素
+
+- to
+  - 字符串：跳转的目标地址
+  - 对象：
+    - pathname：url 路径
+    - search
+    - hash
+    - state：附加的状态信息
+- replace：bool，表示是否是替换当前地址，默认是 false
+- innerRef：可以将内部的 a 元素的 ref 附着在传递的对象或函数参数上
+  - 函数
+  - ref 对象
+
+### NavLink
+
+是一种特殊的 Link，Link 组件具备的功能，它都有
+
+它具备的额外功能是：根据当前地址和链接地址，来决定该链接的样式
+
+- activeClassName: 匹配时使用的类名
+- activeStyle: 匹配时使用的内联样式
+- exact: 是否精确匹配
+- sensitive：匹配时是否区分大小写
+- strict：是否严格匹配最后一个斜杠
+
+### Redirect
+
+重定向组件，当加载到该组件时，会自动跳转（无刷新）到另外一个地址
+
+- to：跳转的地址
+  - 字符串
+  - 对象
+- push: 默认为 false，表示跳转使用替换的方式，设置为 true 后，则使用 push 的方式跳转
+- from：当匹配到 from 地址规则时才进行跳转
+- exact: 是否精确匹配 from
+- sensitive：from 匹配时是否区分大小写
+- strict：from 是否严格匹配最后一个斜杠
+
 # build your own react
 
 [build your own react](https://pomb.us/build-your-own-react/)
