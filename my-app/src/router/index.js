@@ -3,7 +3,8 @@ import React from 'react'
 import { render } from 'react-dom'
 
 // 首先我们需要导入一些组件...
-import { Router, Route, Link } from 'react-router'
+// import { Router, Route, Link, withRouter } from 'react-router'
+import { HashRouter as Router, Route, Switch, Link } from "react-router-dom"
 
 function compA() {
   return <div>A组件</div>
@@ -17,3 +18,5 @@ export default function RouterDemo() {
     <Route path='/b' component={compB}></Route>
   </Router>
 }
+
+// export default withRouter(RouterDemo)
