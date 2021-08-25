@@ -555,6 +555,54 @@ react-router 使用了第三方库：Path-to-RegExp，该库的作用是，将�
 - sensitive：from 匹配时是否区分大小写
 - strict：from 是否严格匹配最后一个斜杠
 
+---
+
+## 导航守卫
+
+导航守卫：当离开一个页面，进入另一个页面时，触发的事件
+
+history 对象
+
+- listen: 添加一个监听器，监听地址的变化，当地址发生变化时，会调用传递的函数
+  - 参数：函数，运行时间点：发生在即将跳转到新页面时
+    - 参数 1：location 对象，记录当前的地址信息
+    - 参数 2：action，一个字符串，表示进入该地址的方式
+      - POP：出栈
+        - 通过点击浏览器后退、前进
+        - 调用 history.go
+        - 调用 history.goBack
+        - 调用 history.goForward
+      - PUSH：入栈
+        - history.push
+      - REPLACE：替换
+        - history.replace
+  - 返回结果：函数，可以调用该函数取消监听
+- block：设置一个阻塞，并同时设置阻塞消息，当页面发生跳转时，会进入阻塞，并将阻塞消息传递到路由根组件的 getUserConfirmation 方法。
+  - 返回一个回调函数，用于取消阻塞器
+
+路由根组件
+
+- getUserConfirmation
+  - 参数：函数
+    - 参数 1：阻塞消息
+      - 字符串消息
+      - 函数，函数的返回结果是一个字符串，用于表示阻塞消息
+        - 参数 1：location 对象
+        - 参数 2：action 值
+    - 参数 2：回调函数，调用该函数并传递 true，则表示进入到新页面，否则，不做任何操作
+
+---
+
+## 常见应用
+
+- 路由切换动画
+  - 第三方动画库：react-transition-group
+  - CSSTransition：用于为内部的 DOM 元素添加类样式，通过 in 属性决定内部的 DOM 处于退出还是进入阶段。
+- 滚动条复位
+  - 高阶组件
+  - 使用 useEffect
+  - 使用自定义的导航守卫
+
 # build your own react
 
 [build your own react](https://pomb.us/build-your-own-react/)
