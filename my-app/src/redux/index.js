@@ -1,4 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, bindActionCreators } from 'redux';
+import numberAction from './action/number-action';
+import numberActions from './action/number-action';
 /**
  * 
  * @param {*} state 之前仓库中的状态
@@ -20,9 +22,14 @@ const store = createStore(reducer, 10);
 const action = {
   type: 'increase'
 }
+//第一个参数，是action创建函数合并的对象，第二个参数是仓库的dispatch函数
+//得到一个新的对象，新对象中的属性名与第一个参数的属性名一致
+const boundActions = bindActionCreators(numberAction, store.dispatch);
+
+boundActions.getIncreaseType(); // 向store分发action
 
 console.log(store.getState());
 
-store.dispatch(action); // 向仓库分发action
+// store.dispatch(action); // 向仓库分发action
 
 console.log(store.getState());
