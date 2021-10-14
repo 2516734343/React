@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './redux/index';
+// import './redux/index';
+import './student/store/test';
 
 ReactDOM.render(
   <React.StrictMode>
