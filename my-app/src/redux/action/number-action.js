@@ -1,6 +1,10 @@
 function getIncreaseType() {
   return 'increase';
 }
-export default numberActions = {
+export const numberActions = {
   getIncreaseType: getIncreaseType
+}
+
+export default function increase() {
+
 }

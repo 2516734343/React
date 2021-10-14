@@ -9,15 +9,25 @@ import Context from './context';
 import ParentModal from './example/set-state';
 import RouterDemo from './router/index';
 import Prevent from './router/preventSkip/Prevent';
+import CounterContainer from './redux/counter';
+
+
+import { Provider } from 'react-redux';
+import store from './redux/index';
 function App() {
   return (
-    <div className="App">
-      {/* <Game /> */}
-      {/* <Context /> */}
-      {/* <ParentModal /> */}
-      {/* <RouterDemo /> */}
-      <Prevent />
-    </div>
+    // <Provider store={store}>
+    //   
+    //     {/* <Game /> */}
+    //     {/* <Context /> */}
+    //     {/* <ParentModal /> */}
+    //     {/* <RouterDemo /> */}
+    //     {/* <Prevent /> */}
+    //   </div>
+    // </Provider>
+    <Provider store={store}>
+      <CounterContainer />
+    </Provider>
   );
 }
 
