@@ -42,4 +42,40 @@ export function fetchStudents() {
     dispatch(setStudentsAndTotal(resp.datas, resp.count));
     dispatch(setIsLoading(false));
   }
+
 }
+
+
+export async function fetchStudents1() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const action = setStudentsAndTotal([], 0)
+      resolve(action);
+    }, 1000)
+  })
+}
+
+
+export async function fetchStudents2(condition) {
+  const resp = await searchStudents(condition);
+  return setStudentsAndTotal(resp.datas, resp.count);
+}
+
+
+export async function fetchStudents3(condition) {
+  return {
+    type: actionTypes.setStudentsAndTotal,
+    pyload: new Promise((resolve, reject) => {
+
+      searchStudents(condition).then(res => (
+        {
+          datas: res.datas,
+          total: res.count
+        }
+      ))
+
+    })
+
+  }
+}
+

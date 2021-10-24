@@ -3,6 +3,12 @@ import { createChangeAction } from '../store/action/student/searchContion';
 import { setIsLoading } from '../store/action/student/searchResult';
 
 import { fetchStudents } from './action/student/searchResult';
+
+
+
+store.dispatch(fetchStudents)
+
+
 console.log(store.getState());
 
 store.dispatch(createChangeAction({

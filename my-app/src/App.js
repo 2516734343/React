@@ -9,7 +9,7 @@ import Context from './context';
 import ParentModal from './example/set-state';
 import RouterDemo from './router/index';
 import Prevent from './router/preventSkip/Prevent';
-import CounterContainer from './redux/counter';
+import CounterContainer from './reduxDemo/counter';
 
 
 import { Provider } from 'react-redux';
