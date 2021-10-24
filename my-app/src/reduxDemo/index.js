@@ -1,5 +1,6 @@
 import { createStore, bindActionCreators, applyMiddleware } from 'redux';
 import { numberActions } from './action/number-action';
+import { createLogger } from 'redux-logger';
 /**
  * 
  * @param {*} state 之前仓库中的状态

@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import './redux/index';
 // import './student/store/test';
+import './reduxDemo/test';
+
 
 ReactDOM.render(
   <React.StrictMode>
