@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "connected-react-router": "^6.9.1",
+    "history": "^5.0.1",
     "is-promise": "^4.0.0",
     "loadash": "^1.0.0",
     "query-string": "^6.8.2",
