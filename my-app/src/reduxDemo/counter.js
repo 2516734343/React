@@ -1,6 +1,6 @@
 import React from 'react';
 import store from './index';
-import { connect } from 'react-redux';
+import { connect, connectAdvanced } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import increase from './action/number-action';
 
@@ -71,3 +71,14 @@ const creatore = {
 }
 
 export default connect(mapStateToProps, creatore)(Counter)
+
+
+// function selectorFactory(dispatch) {
+//   return function (state, ownProps) {
+//     return {
+//       // 要传给组件的参数对象
+//     }
+//   }
+// }
+
+// export default connectAdvanced(selectorFactory)(Counter)
