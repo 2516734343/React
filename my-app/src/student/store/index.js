@@ -6,6 +6,7 @@ import reducer from "./reducer";
 import thunk from "redux-thunk";
 import promise from 'redux-promise';
 import { routerMiddleware } from 'connected-react-router'
+import history from "./history";
 
 // const store = createStore(reducer, applyMiddleware(thunk));
 

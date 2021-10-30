@@ -18,10 +18,14 @@ import store from './student/store/index';
 import { Route, Switch } from "react-router-dom"
 import { ConnectedRouter } from 'connected-react-router'
 // 学生查询
-import HomePage from './student/pages/home';
-import Login from './student/pages/login';
+// import HomePage from './student/pages/home';
+// import Login from './student/pages/login';
 
-import history from './student/store/history';
+// import history from './student/store/history';
+
+import Footer from './todoList/components/Footer';
+import AddTodo from './todoList/containers/AddTodo';
+import VisibleTodoList from './todoList/containers/VisibleTodoList';
 
 function App() {
   return (
@@ -37,14 +41,21 @@ function App() {
     // <Provider store={store}>
     //   <CounterContainer />
     // </Provider>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Switch>
-          <Route component={HomePage} path='/login' />
-          <Route component={Login} path='/' />
-        </Switch>
-      </ConnectedRouter>
-    </Provider>
+    // <Provider store={store}>
+    //   <ConnectedRouter history={history}>
+    //     <Switch>
+    //       <Route component={HomePage} path='/login' />
+    //       <Route component={Login} path='/' />
+    //     </Switch>
+    //   </ConnectedRouter>
+    // </Provider>
+    <div>
+      <AddTodo />
+      <VisibleTodoList />
+      <Footer />
+    </div>
+
+
   );
 }
 
