@@ -112,3 +112,75 @@ react-redux 库：链接 redux 和 react
       - 函数返回的对象会作为属性传递到展示组件中（作为事件处理函数存在）
     - 情况 2：传递一个对象，对象的每个属性是一个 action 创建函数，当事件触发时，会自动的 dispatch 函数返回的 action
   - 细节二：如果不传递第二个参数，通过 connect 连接的组件，会自动得到一个属性：dispatch，使得组件有能力自行触发 action，但是，不推荐这样做,不能把展示组件和数据仓库耦合在一起。
+
+> 1. chrome 插件：redux-devtools
+> 2. 使用 npm 安装第三方库：redux-devtools-extension
+
+## react-redux 其他 api
+
+> 详情参考：https://react-redux.js.org/api
+
+### connect
+
+- mergeProps: 一个函数
+  - 参数 1：stateProps，该参数的值来自于 mapStateToProps 返回的值
+  - 参数 2：dispatchProps，该参数的值来自于 mapDispatchToProps 返回的值
+  - 参数 3：ownProps，来自于组件使用者传递的属性
+  - 返回值：一个对象，该对象的属性最终会被传递到包装的组件中。
+- options：配置对象
+
+### connectAdvanced
+
+该函数和 connect 一样，也是用于连接 React 组件和 Redux 仓库的，只不过它的配置比 connect 少一些
+
+该函数需要传递两个参数：
+
+- selectorFactory
+  - 参数 1：dispatch
+  - 参数 2：factoryOptions，配置
+  - 返回：函数
+    - 参数 1：state
+    - 参数 2：ownProps
+    - 返回的是一个对象：该对象的属性最终，会成为包装的组件的属性
+- connectOptions
+
+### createProvider
+
+createProvider(字符串 key)：通过一个唯一的 key 值创建一个 Provider 组件。
+
+```js
+var Provider1 = createProvider("p1");
+var Provider2 = createProvider("p2");
+```
+
+# redux 和 router 的结合（connected-react-router）
+
+用于将 redux 和 react-router 进行结合
+
+本质上，router 中的某些数据可能会跟数据仓库中的数据进行联动
+
+该组件会将下面的路由数据和仓库保持同步
+
+1. action：它不是 redux 的 action，它表示当前路由跳转的方式（PUSH、POP、REPLACE）
+2. location：它记录了当前的地址信息
+
+该库中的内容：
+
+## connectRouter
+
+这是一个函数，调用它，会返回一个用于管理仓库中路由信息的 reducer，该函数需要传递一个参数，参数是一个 history 对象。该对象，可以使用第三方库 history 得到。
+
+## routerMiddleware
+
+该函数会返回一个 redux 中间件，用于拦截一些特殊的 action
+
+## ConnectedRouter
+
+这是一个组件，用于向上下文提供一个 history 对象和其他的路由信息（与 react-router 提供的信息一致）
+
+之所以需要新制作一个组件，是因为该库必须保证整个过程使用的是同一个 history 对象
+
+## 一些 action 创建函数
+
+- push
+- replace
