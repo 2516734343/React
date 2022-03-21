@@ -640,6 +640,11 @@ history 对象
 
 ## 自定义 Hook
 
+> 将一些常用的，跨越多个组件的 hook 功能，抽离出去形成一个函数，改函数就是自定义 hook.
+
+- 高阶组件解决逻辑复用问题，会使得组件结构层次变深，难以区分开真实组件。
+- render props 复用一个值为函数的 props 解决代码共享，主要解决数据一样，渲染不一样的问题。
+
 # build your own react
 
 [build your own react](https://pomb.us/build-your-own-react/)

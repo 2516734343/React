@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLoadStudent } from "../myHooks/useLoadStudent";
-import { useTimer } from "../myHooks/useTimer";
 import { getStudent } from "../utils/getStudent";
 import { StudentList } from "./student";
 
@@ -28,12 +27,28 @@ export function StudentWrap() {
   // }, [pageNo])
   const stu = useLoadStudent();
   console.log(stu);
-  useTimer(() => {
-    console.log('定时器');
-  }, 1000)
 
   return <div>
     <StudentList data={stu} />
     {/* <input value={pageNo} onChange={e => setPageNo(e.target.value)}></input> */}
+    <studentBox render={stu => <StudentList data={stu} />} />
   </div>
+}
+
+export class studentBox extends React.Component {
+  constructor() {
+    state = {
+      stu: [],
+    }
+  }
+
+  componentDidMount() {
+
+  }
+
+  render() {
+    if ((typeof this.props.render) === 'function') {
+      return this.props.render(stu)
+    }
+  }
 }
