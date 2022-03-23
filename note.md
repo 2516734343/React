@@ -630,7 +630,7 @@ history 对象
 1. 副作用函数运行的时间点，是在页面完成渲染后，因此副作用函数的执行是异步的，不会阻塞浏览器。
 
    - 在类组件中，在 componentDidMount 和 componentDidUpdate 中，更改了真实的 dom，但是用户还没有看到 UI 更新。同步的。
-   - 在函数组件中，useEffect 是在更改了真实 dom 并且 用户已经看到了 UI 更新，异步的。
+   - 在函数组件中，**useEffect 是在更改了真实 dom 并且 用户已经看到了 UI 更新**，异步的。
 
 2. 在一个函数组件中，可以使用多个 useEffect。但不要放在代码块中(判断、循环)。
 3. useEffect 中的副作用函数可以有返回值，返回值必须是一个函数。该函数叫做“清理函数”，该函数运行时间点，在运行副作用函数之前。首次渲染组件不会运行。
@@ -644,6 +644,53 @@ history 对象
 
 - 高阶组件解决逻辑复用问题，会使得组件结构层次变深，难以区分开真实组件。
 - render props 复用一个值为函数的 props 解决代码共享，主要解决数据一样，渲染不一样的问题。
+
+## useContext
+
+## useCallback
+
+固定一个函数的引用地址。第一个参数是一个函数，第二个函数是依赖。依赖项没有发生变化，就可以用这个。
+`useCallback(fn, deps)` 相当于 `useMemo(() => fn, deps)`。
+
+## useMemo
+
+用于保持一些比较稳定的数据。通常用于性能优化。
+如果 react 元素本身的引用没有发生变化，不会重新渲染。
+
+## useRef
+
+- 一个参数：默认值
+- 每次渲染都返回一个固定的对象。`{current: val}`
+
+## useImperativeHandle
+
+- 返回的值是 current 的值
+
+```javascript
+useImperativeHandle(
+  ref,
+  () => {
+    // 返回的值是current的值
+    return {
+      method() {
+        console.log("test method");
+      },
+    };
+  },
+  []
+);
+```
+
+- 如果不给依赖项，则每次函数运行都会调用该方法。如果使用了依赖项，第一次调用后，会尽享缓存，只有依赖项发生变化的时候，才会调用。
+
+## useLayoutEffect
+
+**浏览器完成了 dom 改动，但是浏览器还没渲染，即用户还没看到页面更新。和 componentDidMount 和 componentDidUpdate 类似。操作真实的 dom 用这个。**
+尽可能使用标准的 useEffect 以避免阻塞视觉更新。
+
+## useDebugValue
+
+用于将自定义 hook(通用性比较高的) 的关联数据显示到调试栏。
 
 # build your own react
 
