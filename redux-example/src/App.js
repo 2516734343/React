@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <h1 ref={ref}></h1>
-      <button onClick={() => {
+      <button onClick={(e) => {
         setN(n + 1);
       }}>调用子组件方法</button>
     </div>
