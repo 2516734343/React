@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLoadStudent } from "../myHooks/useLoadStudent";
+import { useLoadStudent } from "../customHooks/useLoadStudent";
 import { getStudent } from "../utils/getStudent";
 import { StudentList } from "./student";
 
@@ -41,6 +41,7 @@ export class studentBox extends React.Component {
       stu: [],
     }
   }
+
 
   componentDidMount() {
 

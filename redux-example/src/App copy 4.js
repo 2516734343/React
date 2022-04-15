@@ -5,6 +5,7 @@ import './App.css';
 
 class Test extends React.PureComponent {
 
+
   render() {
     console.log('test render')
     return <div>
