@@ -13,7 +13,7 @@ export function useFormChange() {
   const handleFormChange = useMemo(() => {
 
     const setFormItem = (key, value) => {
-      console.log(value);
+      console.log(key, value);
       const form = formData.current;
 
       form[key] = value;

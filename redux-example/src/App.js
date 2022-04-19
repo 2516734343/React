@@ -5,6 +5,7 @@ import './App.css';
 import useModal from 'antd/lib/modal/useModal';
 import Index from './customHooks/useScroll';
 import { FormInfo } from './customHooks/useFormChange';
+import { Drag } from './customHooks/useDragDrop';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
     <div className="App">
 
       {/* <Index /> */}
-      <FormInfo />
+      {/* <FormInfo /> */}
+      <Drag />
     </div>
   );
 }
